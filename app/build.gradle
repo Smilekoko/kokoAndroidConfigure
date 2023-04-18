@@ -35,13 +35,56 @@ android {
         }
     }
 
+    //构建变体类型
     buildTypes {
+        debug {
+            //applicationIdSuffix：修改应用唯一ID标识。其实就是在applicationId加上后缀进行区分,同个手机可以按照多个变体
+            //包名：xxx.xxx.xxx.debug
+//            applicationIdSuffix ".debug"
+            debuggable true
+        }
+
         release {
+//            applicationIdSuffix ".release"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.realse
         }
+
+//        getByName("debug") {
+//            applicationIdSuffix = ".debug"
+//            isDebuggable = true
+//        }
+
+//        getByName("release") {
+//            applicationIdSuffix = ".release"
+//            isMinifyEnabled = true
+//            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+//        }
     }
+
+    //添加风味维度：风味变体的大类
+    flavorDimensions "version"
+//    flavorDimensions += "version"
+
+
+    //添加风味变体
+    productFlavors {
+        koko {
+            //风味变体必须指定风味维度
+            dimension "version"
+            applicationIdSuffix ".demo"
+            versionNameSuffix "-demo"
+        }
+        fate {
+            dimension "version"
+            applicationIdSuffix ".fate"
+            //版本名后缀
+            versionNameSuffix "-fate"
+        }
+    }
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
