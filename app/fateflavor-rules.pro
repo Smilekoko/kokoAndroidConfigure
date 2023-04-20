@@ -20,4 +20,3 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep public class com.shiki.koko.androidconfigure.MainActivity
